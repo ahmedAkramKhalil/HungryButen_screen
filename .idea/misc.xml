@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="../../../../layout/custom_preview.xml" value="0.25885416666666666" />
+        <entry key="app/src/main/res/drawable/add_min_button_back.xml" value="0.1635" />
+        <entry key="app/src/main/res/drawable/blur_background.xml" value="0.3215" />
+        <entry key="app/src/main/res/drawable/button_circular.xml" value="0.3475" />
+        <entry key="app/src/main/res/drawable/button_rounded.xml" value="0.3475" />
+        <entry key="app/src/main/res/drawable/dialog_bg.xml" value="0.183" />
+        <entry key="app/src/main/res/drawable/indicator.xml" value="0.1645" />
+        <entry key="app/src/main/res/drawable/positive_button_rounded.xml" value="0.2175" />
+        <entry key="app/src/main/res/drawable/raduis_circular.xml" value="0.183" />
+        <entry key="app/src/main/res/drawable/tab_background_selector.xml" value="0.1645" />
+        <entry key="app/src/main/res/drawable/tab_indicator.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/tab_selected_background.xml" value="0.1645" />
+        <entry key="app/src/main/res/drawable/tab_unselected_background.xml" value="0.1645" />
+        <entry key="app/src/main/res/drawable/top_button_circular.xml" value="0.3475" />
+        <entry key="app/src/main/res/layout/activity_chef.xml" value="0.2676991150442478" />
+        <entry key="app/src/main/res/layout/activity_chef_org.xml" value="0.44781553398058255" />
+        <entry key="app/src/main/res/layout/activity_invoice.xml" value="0.5854545454545454" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.2427536231884058" />
+        <entry key="app/src/main/res/layout/activity_start.xml" value="0.3434466019417476" />
+        <entry key="app/src/main/res/layout/fragment_chef_item.xml" value="0.31023550724637683" />
+        <entry key="app/src/main/res/layout/ingredents_fragment.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/ingredient_item.xml" value="0.31023550724637683" />
+        <entry key="app/src/main/res/layout/invoice_recycler_item.xml" value="0.63671875" />
+        <entry key="app/src/main/res/layout/language_dialog.xml" value="0.375" />
+        <entry key="app/src/main/res/layout/layout_dialog.xml" value="0.5709219858156028" />
+        <entry key="app/src/main/res/layout/product_item.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/tab_icon_layout.xml" value="0.55" />
+        <entry key="app/src/main/res/layout/tab_indicator.xml" value="1.0" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

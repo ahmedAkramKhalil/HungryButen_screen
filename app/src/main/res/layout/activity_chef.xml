@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.wiz.myapplication.viewmodel.ChefViewModel" />
+
+        <variable
+            name="product"
+            type="com.wiz.myapplication.model.Product" />
+
+        <variable
+            name="handler"
+            type="com.wiz.myapplication.ui.ChefActivity" />
+
+        <variable
+            name="ingredient"
+            type="com.wiz.myapplication.model.IngredientsCategory" />
+
+        <variable
+            name="adapter"
+            type="com.wiz.myapplication.ui.adapter.IngredientsCategoryPagerAdapter" />
+
+        <variable
+            name="actionEvent"
+            type="com.wiz.myapplication.ActionEvent" />
+
+    </data>
+
+    <androidx.constraintlayout.motion.widget.MotionLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layoutDescription="@xml/activity_chef_scene"
+        tools:context=".ui.ChefActivity">
+
+
+
+
+
+
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="24dp"
+            android:text="@{ingredient.name}"
+            android:textColor="@color/yellow"
+            android:textSize="48sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <com.ogaclejapan.smarttablayout.SmartTabLayout
+            android:id="@+id/view_pager_tab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="8dp"
+            android:fitsSystemWindows="true"
+            android:background="@drawable/raduis_circular"
+            android:backgroundTint="#1AFFFFFF"
+            android:foregroundGravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView"
+            app:stl_dividerColor="#00000000"
+            app:stl_dividerThickness="0dp"
+            app:stl_indicatorColor="#4DFFFFFF"
+            app:stl_indicatorCornerRadius="100dp"
+            app:stl_indicatorGravity="center"
+            app:stl_indicatorInterpolation="smart"
+            app:stl_indicatorThickness="70dp"
+            app:stl_indicatorWithoutPadding="false"
+            app:stl_underlineColor="#00000000"
+            app:stl_underlineThickness="0dp"
+
+            />
+
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/main_pager"
+            android:layout_width="400dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
+            app:layout_constraintEnd_toEndOf="parent"
+
+            app:layout_constraintTop_toBottomOf="@+id/view_pager_tab" />
+
+        <View
+            android:id="@+id/view2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="0dp"
+            android:background="@android:color/holo_green_dark"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="MissingConstraints" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout3"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:background="@drawable/top_button_circular"
+            android:backgroundTint="#0DFFFFFF"
+            android:foregroundGravity="bottom"
+
+            android:gravity="bottom"
+            android:orientation="horizontal"
+            android:paddingLeft="24dp"
+            android:paddingTop="12dp"
+            android:paddingRight="24dp"
+            android:paddingBottom="12dp"
+            android:weightSum="6"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="4dp"
+                android:layout_weight="2"
+                android:orientation="vertical"
+                android:paddingRight="4dp"
+                android:weightSum="4">
+
+                <TextView
+                    android:id="@+id/total_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_weight="1"
+                    android:text="@string/total_price"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/red_text_color"
+                    android:textSize="18sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="4dp"
+                    android:layout_weight="1"
+                    android:layout_marginBottom="4dp"
+                    android:gravity="center_vertical|start"
+                    android:orientation="horizontal">
+
+                    <com.robinhood.ticker.TickerView
+                        android:id="@+id/totalPrice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0"
+                        android:text="@{String.valueOf(product.totalPrice)}"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/red_text_color"
+                        android:textSize="@dimen/rolling_text_size" />
+
+                    <ImageView
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="0"
+                        android:src="@drawable/nis_icon"
+                        app:tint="@color/red_text_color" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <!--        app:tabIndicator="@drawable/indicator"-->
+            <!--        app:tabSelectedTextColor="@color/white"-->
+            <!--        app:tabTextColor="@color/purple_500"-->
+            <!--        app:tabIconTint="@color/white"-->
+            <!--        app:tabBackground="@drawable/indicator"-->
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/cancel_button"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/button_height"
+                android:layout_gravity="center"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="4dp"
+                android:layout_weight="2"
+                android:background="@drawable/button_rounded"
+                android:backgroundTint="@color/button_negative_color"
+                android:elevation="@dimen/min_button"
+                android:textSize="@dimen/button_text_size"
+                android:gravity="center"
+                android:onClick="@{() -> vm.sendActionEvent(actionEvent.SHOW_CANCEL_DIALOG_EVENT)}"
+                android:text="@string/cancel"
+                android:textColor="@color/white" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/next_button"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/button_height"
+                android:layout_gravity="center"
+                android:layout_marginLeft="4dp"
+                android:layout_weight="2"
+                android:background="@drawable/positive_button_rounded"
+                android:gravity="center"
+                android:onClick="@{() -> vm.sendActionEvent(actionEvent.NEXT_PAGE_EVENT)}"
+                android:textColor="@color/button_positive_text_color"
+                android:textSize="@dimen/button_text_size"
+                />
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/blur_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/dark_gray"
+            android:visibility="gone" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/product_recyclerView"
+            android:layout_width="300dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="40dp"
+            android:clipToPadding="true"
+            android:foregroundGravity="center"
+            app:fastScrollEnabled="false"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view_pager_tab"
+            android:background="@drawable/button_circular"
+            android:backgroundTint="#0DFFFFFF"
+
+            />
+
+    </androidx.constraintlayout.motion.widget.MotionLayout>
+</layout>

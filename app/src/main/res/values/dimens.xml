@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="min_button">-20dp</dimen>
+    <dimen name="button_text_size">24dp</dimen>
+    <dimen name="button_radius">25dp</dimen>
+    <dimen name="rolling_text_size">50dp</dimen>
+    <dimen name="button_height">70dp</dimen>
+    <dimen name="circular_radius">25dp</dimen>
+    <dimen name="dialog_text_title">26dp</dimen>
+    <dimen name="dialog_text_body">22dp</dimen>
+</resources>

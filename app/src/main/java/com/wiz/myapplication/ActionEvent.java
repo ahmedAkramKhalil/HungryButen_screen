@@ -1,0 +1,12 @@
+package com.wiz.myapplication;
+
+public enum ActionEvent {
+    SHOW_FINISH_DIALOG_EVENT,
+    SHOW_CANCEL_DIALOG_EVENT,
+    NEXT_PAGE_EVENT,
+    BACK_PAGE_EVENT,
+    START_PRINT_EVENT,
+    CANCEL_ORDERING_EVENT,
+    FINISH_ORDERING
+
+}

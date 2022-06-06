@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <declare-styleable name="TintableImageView">
+    <attr name="tint" format="reference|color"/>
+    <attr name="android:backgroundTint" format="reference|color"/>
+  </declare-styleable>
+</resources>

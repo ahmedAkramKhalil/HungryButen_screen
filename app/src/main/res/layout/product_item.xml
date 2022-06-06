@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable
+            name="product"
+            type="com.wiz.myapplication.model.Ingredient" />
+        <variable
+            name="animation"
+            type="com.wiz.myapplication.model.AnimatedIngredient" />
+
+    </data>
+
+    <com.google.android.flexbox.FlexboxLayout
+        android:id="@+id/root_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        android:layout_margin="0dp"
+        android:layout_marginTop="0dp"
+        android:padding="0dp"
+        app:flexWrap="wrap"
+        android:background="#00000000"
+        >
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/animation_view"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:maxHeight="120dp"
+            android:minHeight="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+
+            app:lottie_enableMergePathsForKitKatAndAbove="true"
+
+            app:lottie_autoPlay="false"
+            android:background="#00000000"
+            app:lottie_fileName="p12.json"
+            app:lottie_loop="false"
+            app:lottie_speed="1"
+
+            
+            />
+
+    </com.google.android.flexbox.FlexboxLayout>
+
+</layout>
