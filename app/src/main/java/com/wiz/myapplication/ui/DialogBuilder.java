@@ -22,16 +22,11 @@ public class DialogBuilder {
     private static DialogBuilder dialogBuilder;
     private ChefViewModel viewModel;
 
-    private DialogBuilder(Activity context, ChefViewModel viewModel) {
+    public DialogBuilder(Activity context, ChefViewModel viewModel) {
         this.context = context;
         this.viewModel = viewModel;
     }
 
-    public static DialogBuilder getInstance(Activity context, ChefViewModel viewModel) {
-        if (dialogBuilder == null)
-            dialogBuilder = new DialogBuilder(context, viewModel);
-        return dialogBuilder;
-    }
 
     public void showFinishDialog() {
         LayoutDialogBinding dialogBinding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.layout_dialog, null, false);

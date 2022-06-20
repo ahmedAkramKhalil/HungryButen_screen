@@ -22,6 +22,7 @@ import androidx.viewpager2.widget.ViewPager2;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.content.res.Configuration;
 import android.content.res.Resources;
@@ -29,6 +30,8 @@ import android.graphics.Color;
 import android.graphics.Rect;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Parcelable;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -96,11 +99,11 @@ public class ChefActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setLocale(getIntent().getStringExtra("language").equalsIgnoreCase("ar")?"ar":"en");
+        setLocale(getIntent().getStringExtra("language").equalsIgnoreCase("ar") ? "ar" : "en");
 
         setContentView(R.layout.activity_chef);
 //        setLocale("ar");
-        Log.d("language",Locale.getDefault().getLanguage()+ "  " + getIntent().getStringExtra("language"));
+        Log.d("language", Locale.getDefault().getLanguage() + "  " + getIntent().getStringExtra("language"));
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_chef);
         viewModel = new ViewModelProvider(this).get(ChefViewModel.class);
@@ -117,7 +120,7 @@ public class ChefActivity extends AppCompatActivity {
         handleActionEvent();
     }
 
-    public void setLocale( String languageCode) {
+    public void setLocale(String languageCode) {
         Locale locale = new Locale(languageCode);
         Locale.setDefault(locale);
         Resources resources = getResources();
@@ -156,10 +159,10 @@ public class ChefActivity extends AppCompatActivity {
                 ActionEvent actionEvent = (ActionEvent) action;
                 switch (actionEvent) {
                     case SHOW_CANCEL_DIALOG_EVENT:
-                        DialogBuilder.getInstance(ChefActivity.this, viewModel).showCancelDialog();
+                        new DialogBuilder(ChefActivity.this, viewModel).showCancelDialog();
                         break;
                     case SHOW_FINISH_DIALOG_EVENT:
-                        DialogBuilder.getInstance(ChefActivity.this, viewModel).showFinishDialog();
+                        new DialogBuilder(ChefActivity.this, viewModel).showFinishDialog();
                         break;
                     case NEXT_PAGE_EVENT:
                         onClickToNext();
@@ -191,21 +194,25 @@ public class ChefActivity extends AppCompatActivity {
     };
 
 
-    void showFinishOrderingTransition(){
+    void showFinishOrderingTransition() {
         binding.container.transitionToEnd();
         binding.container.addTransitionListener(new MotionLayout.TransitionListener() {
             @Override
-            public void onTransitionStarted(MotionLayout motionLayout, int startId, int endId) { }
+            public void onTransitionStarted(MotionLayout motionLayout, int startId, int endId) {
+            }
 
             @Override
-            public void onTransitionChange(MotionLayout motionLayout, int startId, int endId, float progress) { }
+            public void onTransitionChange(MotionLayout motionLayout, int startId, int endId, float progress) {
+            }
 
             @Override
             public void onTransitionCompleted(MotionLayout motionLayout, int currentId) {
                 startCompressProductItemsAnimation();
             }
+
             @Override
-            public void onTransitionTrigger(MotionLayout motionLayout, int triggerId, boolean positive, float progress) { }
+            public void onTransitionTrigger(MotionLayout motionLayout, int triggerId, boolean positive, float progress) {
+            }
         });
 
     }
@@ -213,6 +220,21 @@ public class ChefActivity extends AppCompatActivity {
     private void startCompressProductItemsAnimation() {
         productRecycler.addItemDecoration(new ItemDecorator(-90));
         productRecyclerAdapter.notifyAnimationReplay();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                startInvoiceActivity();
+            }
+        }, 2000);
+
+    }
+
+    void startInvoiceActivity() {
+        Intent in = new Intent(ChefActivity.this, InvoiceActivity.class);
+        in.putParcelableArrayListExtra("ingredients", (ArrayList<? extends Parcelable>) productIngredients);
+        in.putExtra("price", product.getTotalPrice());
+        startActivity(in);
+        finish();
     }
 
     private void showOnViewPager() {
@@ -235,7 +257,7 @@ public class ChefActivity extends AppCompatActivity {
 
                 }
 
-                if ( viewPager.getCurrentItem() == pagerAdapter.getItemCount() -1) {
+                if (viewPager.getCurrentItem() == pagerAdapter.getItemCount() - 1) {
                     enableNextButton(product.getTotalPrice());
                 }
             }
@@ -245,18 +267,18 @@ public class ChefActivity extends AppCompatActivity {
         ViewPagerBinder.bind(tabLayout, viewPager);
     }
 
-    public void enableNextButton(float price){
+    public void enableNextButton(float price) {
         if (viewPager != null && pagerAdapter != null)
-        if ( viewPager.getCurrentItem() == pagerAdapter.getItemCount() -1) {
-        if (price <= 0.0) {
-            binding.nextButton.setEnabled(false);
-            binding.nextButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.button_negative_color)));
-        } else {
-            binding.nextButton.setEnabled(true);
-            binding.nextButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.red_text_color)));
-        }}
+            if (viewPager.getCurrentItem() == pagerAdapter.getItemCount() - 1) {
+                if (price <= 0.0) {
+                    binding.nextButton.setEnabled(false);
+                    binding.nextButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.button_negative_color)));
+                } else {
+                    binding.nextButton.setEnabled(true);
+                    binding.nextButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.red_text_color)));
+                }
+            }
     }
-
 
 
     public void onClickToNext() {
@@ -266,7 +288,7 @@ public class ChefActivity extends AppCompatActivity {
             binding.nextButton.setClickable(true);
         } else {
 
-            DialogBuilder.getInstance(this, viewModel).showFinishDialog();
+            new DialogBuilder(this, viewModel).showFinishDialog();
         }
     }
 
@@ -275,6 +297,7 @@ public class ChefActivity extends AppCompatActivity {
             viewPager.setCurrentItem(viewPager.getCurrentItem() - 1);
         }
     }
+
     FlexboxLayoutManager flexboxLayoutManager = new FlexboxLayoutManager(this);
 
     void initRecycler() {
@@ -304,6 +327,7 @@ public class ChefActivity extends AppCompatActivity {
             productRecycler.setAdapter(productRecyclerAdapter);
         }
         productRecyclerAdapter.updateItems(productIngredients);
+
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)

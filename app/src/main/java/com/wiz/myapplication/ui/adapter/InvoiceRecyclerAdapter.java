@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -29,9 +30,9 @@ public class InvoiceRecyclerAdapter extends RecyclerView.Adapter<InvoiceRecycler
 
 
 
-    public InvoiceRecyclerAdapter(Context context) {
+    public InvoiceRecyclerAdapter(Context context,List<Ingredient> ingredients) {
         this.context = context;
-        ingredients = new ArrayList<>();
+        this.ingredients = ingredients;
     }
 
     @NonNull
@@ -42,8 +43,7 @@ public class InvoiceRecyclerAdapter extends RecyclerView.Adapter<InvoiceRecycler
                 R.layout.invoice_recycler_item,
                 parent,
                 false);
-         IngredientViewHolder ingredientViewHolder = new IngredientViewHolder(invoiceRecyclerItemBinding);
-        return ingredientViewHolder;
+        return  new IngredientViewHolder(invoiceRecyclerItemBinding);
     }
 
 
@@ -51,18 +51,12 @@ public class InvoiceRecyclerAdapter extends RecyclerView.Adapter<InvoiceRecycler
     public void onBindViewHolder(@NonNull IngredientViewHolder holder, int position) {
         Ingredient ingredient = ingredients.get(position);
         holder.invoiceRecyclerItemBinding.setIngredient(ingredient);
+        Log.d("INV"," "+ position);
     }
 
     @Override
     public int getItemCount() {
         return ingredients.size();
-    }
-
-
-
-    boolean isThisIDExist(List<Ingredient> list, long id){
-        for (int i = 0; i < list.size(); i++) { if (list.get(i).getId() == id){ return true; } }
-        return false;
     }
 
 
@@ -73,8 +67,6 @@ public class InvoiceRecyclerAdapter extends RecyclerView.Adapter<InvoiceRecycler
             super(invoiceRecyclerItemBinding.getRoot());
             this.invoiceRecyclerItemBinding = invoiceRecyclerItemBinding;
         }
-
-
     }
 
 

@@ -6,6 +6,7 @@ import android.util.Log;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
 import androidx.databinding.BindingAdapter;
@@ -37,6 +38,7 @@ public class Ingredient extends BaseObservable implements Parcelable {
     long classificationID;
     @SerializedName("photo") @Expose
     ImageResult photo;
+    @Expose @Nullable
     int amount = 0 ;
     float totalPrice = 0 ;
     String animationPath = "https://assets8.lottiefiles.com/packages/lf20_dn48qc.json";
@@ -61,6 +63,7 @@ public class Ingredient extends BaseObservable implements Parcelable {
         classificationID = in.readLong();
         photo = in.readParcelable(ImageResult.class.getClassLoader());
         animationPath = in.readString();
+        amount = in.readInt();
     }
 
 
@@ -237,6 +240,8 @@ public class Ingredient extends BaseObservable implements Parcelable {
         parcel.writeLong(classificationID);
         parcel.writeParcelable(photo, i);
         parcel.writeString(animationPath);
+        parcel.writeInt(amount);
+
     }
 
     @Override

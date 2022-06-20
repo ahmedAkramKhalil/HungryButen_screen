@@ -1,3 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">My Application</string>
+    <string name="contacts">الاسماء</string>
+    <string name="calls">المكالمات</string>
+    <string name="chats">المحادثة</string>
+    <string name="hello_blank_fragment">هلو</string>
+    <string name="total_price">السعر الإجمالي</string>
+    <string name="cancel">إلغاء</string>
+    <string name="done">إنهاء</string>
+    <string name="finish_dialog_title">" هل تريد إنهاء الطلب؟ "</string>
+    <string name="finish_dialog_message">النقر فوق \"نعم\" سينتهي من إنشاء الطلب  ولا يمكنك العودة لتعديله</string>
+    <string name="yes">نعم</string>
+    <string name="dissmiss">تجاهل</string>
+    <string name="cancel_dialog_title">بالتأكيد</string>
+    <string name="cancel_dialog_message">هل أنت متأكد أنك تريد إلغاء الطلب؟</string>
+    <string name="next">التالي</string>
+    <string name="lets_go">هيا بنا</string>
+    <string name="arabic">العربية</string>
+    <string name="english">english</string>
+    <string name="language_dialog_title">Please Select Language!</string>
+    <string name="language_dialog_message">من فضلك قم باختيار اللغة!</string>
 </resources>

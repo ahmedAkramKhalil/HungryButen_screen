@@ -74,15 +74,6 @@ public class IngredientRecyclerAdapter extends  RecyclerView.Adapter<IngredientR
 
             super(ingredientItemBinding.getRoot());
             this.ingredientItemBinding = ingredientItemBinding;
-            ingredientItemBinding.getRoot().setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    int position = getAdapterPosition();
-                    if (position != RecyclerView.NO_POSITION) {
-                        Log.d("LOO", "" + ingredients.get(position).getAmount());
-                    }
-                }
-            });
         }
 
     }
