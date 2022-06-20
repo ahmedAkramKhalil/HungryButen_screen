@@ -156,17 +156,17 @@ public class IngredientsCategory extends BaseObservable implements Parcelable {
 
     int getImage(long id){
         switch ((int) id) {
-            case 0:
-                return (R.drawable.bune);
             case 1:
-                return (R.drawable.egg);
+                return (R.drawable.bun_icon);
             case 2:
-                return (R.drawable.pattye);
+                return (R.drawable.meat_icon);
             case 3:
-                return (R.drawable.tomatoe);
+                return (R.drawable.cold_icon);
             case 4:
-                return (R.drawable.sauce);
+                return (R.drawable.hot_icon);
             case 5:
+                return (R.drawable.sauce_icon);
+            case 6:
                 return (R.drawable.bune);
             default:
                 return (R.drawable.bune);

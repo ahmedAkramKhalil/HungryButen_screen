@@ -195,25 +195,26 @@ public class ChefActivity extends AppCompatActivity {
 
 
     void showFinishOrderingTransition() {
-        binding.container.transitionToEnd();
-        binding.container.addTransitionListener(new MotionLayout.TransitionListener() {
-            @Override
-            public void onTransitionStarted(MotionLayout motionLayout, int startId, int endId) {
-            }
-
-            @Override
-            public void onTransitionChange(MotionLayout motionLayout, int startId, int endId, float progress) {
-            }
-
-            @Override
-            public void onTransitionCompleted(MotionLayout motionLayout, int currentId) {
-                startCompressProductItemsAnimation();
-            }
-
-            @Override
-            public void onTransitionTrigger(MotionLayout motionLayout, int triggerId, boolean positive, float progress) {
-            }
-        });
+       // #TODO: transition
+//        binding.container.transitionToEnd();
+//        binding.container.addTransitionListener(new MotionLayout.TransitionListener() {
+//            @Override
+//            public void onTransitionStarted(MotionLayout motionLayout, int startId, int endId) {
+//            }
+//
+//            @Override
+//            public void onTransitionChange(MotionLayout motionLayout, int startId, int endId, float progress) {
+//            }
+//
+//            @Override
+//            public void onTransitionCompleted(MotionLayout motionLayout, int currentId) {
+//                startCompressProductItemsAnimation();
+//            }
+//
+//            @Override
+//            public void onTransitionTrigger(MotionLayout motionLayout, int triggerId, boolean positive, float progress) {
+//            }
+//        });
 
     }
 
@@ -305,7 +306,9 @@ public class ChefActivity extends AppCompatActivity {
         flexboxLayoutManager.setFlexDirection(FlexDirection.COLUMN);
         flexboxLayoutManager.setAlignItems(AlignItems.STRETCH);
         flexboxLayoutManager.setFlexWrap(FlexWrap.NOWRAP);
-        productRecycler.setLayoutManager(flexboxLayoutManager);
+
+//        productRecycler.setLayoutManager(flexboxLayoutManager);
+        productRecycler.setLayoutManager(new LinearLayoutManager(this));
         productRecycler.addItemDecoration(new ItemDecorator(-100));
 
 
@@ -327,7 +330,6 @@ public class ChefActivity extends AppCompatActivity {
             productRecycler.setAdapter(productRecyclerAdapter);
         }
         productRecyclerAdapter.updateItems(productIngredients);
-
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)

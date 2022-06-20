@@ -21,4 +21,8 @@
     <string name="language_dialog_title">Please Select Language!</string>
     <string name="language_dialog_message">من فضلك قم باختيار اللغة!</string>
     <string name="wiz">"WIZ For Smart Technology "</string>
+    <string name="custom_your_burger">CUSTOM YOUR BURGER</string>
+    <string name="developed_with_love">Developed With Love</string>
+    <string name="by_wiz">By WIZ for smart technology</string>
+    <string name="url">WIZ-TECH.CO</string>
 </resources>

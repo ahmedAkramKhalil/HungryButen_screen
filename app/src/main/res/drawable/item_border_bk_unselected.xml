@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+<!--    <item android:drawable="@drawable/eat_button" />-->
+    <item>
+        <shape android:shape="rectangle">
+
+            <!--            <gradient-->
+            <!--                android:angle="45"-->
+            <!--                android:endColor="#ffffff"-->
+            <!--                android:startColor="@color/facebook_btn_fill_grad1"-->
+            <!--                android:type="linear" />-->
+
+            <solid
+                android:color="@color/custom_gray"
+                />
+
+        </shape>
+
+    </item>
+
+
+
+</layer-list>

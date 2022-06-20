@@ -83,7 +83,7 @@ public class ChefItemFragment extends Fragment {
     private void showOnRecyclerView(IngredientsCategory ingredientsCategory) {
         recyclerView = chefItemBinding.rvIngredients;
         ingredientRecyclerAdapter = new IngredientRecyclerAdapter(getContext(), ingredientsCategory);
-        GridLayoutManager layoutManager = new GridLayoutManager(getContext(),2);
+        GridLayoutManager layoutManager = new GridLayoutManager(getContext(),3);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(ingredientRecyclerAdapter);

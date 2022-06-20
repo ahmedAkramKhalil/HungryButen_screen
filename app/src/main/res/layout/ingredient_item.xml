@@ -13,128 +13,147 @@
             name="vm"
             type="com.wiz.myapplication.viewmodel.ChefViewModel" />
     </data>
-<FrameLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     android:id="@+id/item"
-    android:layout_width="145dp"
-    android:layout_height="150dp"
-    android:layout_margin="15dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     android:onClick="@{ () -> ingredient.incrementAmount()}"
+    android:layout_marginTop="120dp"
+    android:layout_marginLeft="85dp"
+    android:layout_marginRight="85dp"
+    android:layout_margin="85dp"
 
     >
 
     <FrameLayout
-        android:layout_width="125dp"
-        android:layout_height="125dp"
+        android:id="@+id/frameLayout"
+        android:layout_width="500dp"
+        android:layout_height="500dp"
         android:layout_gravity="center"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="5dp"
-        android:layout_marginBottom="5dp"
-        android:background="@drawable/custom_rounded_item_back"
-        android:backgroundTint="@color/item_recycler_color"
         android:clipToPadding="false"
-        android:elevation="-2dp"
         android:gravity="center"
+        android:layout_margin="8dp"
+        android:background="@{ingredient.amount > 0 ? @drawable/item_border_bk : @drawable/item_border_bk_unselected}"
         android:orientation="vertical"
+        bind:layout_constraintEnd_toEndOf="parent"
+        bind:layout_constraintStart_toStartOf="parent"
+        bind:layout_constraintTop_toTopOf="parent"
 
         >
 
         <ImageView
             android:id="@+id/component_img"
-            android:layout_width="wrap_content"
-            android:layout_height="85dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_gravity="center|center_horizontal"
+            android:layout_margin="55dp"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:paddingBottom="20dp"
-            bind:posterPath="@{ingredient.photo}"
-            />
-
-        <TextView
-            android:id="@+id/component_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center"
-            android:gravity="bottom|center_horizontal"
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp"
-            android:paddingBottom="6dp"
-            android:text="@{ingredient.name}"
-            android:lineSpacingExtra="-8dp"
-
-            android:textColor="#ffffff"
-
-            android:textSize="13sp"
-            android:textStyle="bold" />
+            bind:posterPath="@{ingredient.photo}" />
 
     </FrameLayout>
+
+    <TextView
+        android:id="@+id/component_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center"
+        android:layout_marginTop="80dp"
+        android:gravity="bottom|center_horizontal"
+        android:lineSpacingExtra="-8dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+
+        android:paddingBottom="6dp"
+
+        android:text="@{ingredient.name}"
+        android:textColor="@color/yellow"
+        android:textAlignment="center"
+
+        android:textSize="44sp"
+        android:textStyle="bold"
+        bind:layout_constraintEnd_toEndOf="parent"
+        bind:layout_constraintHorizontal_bias="0.498"
+        bind:layout_constraintStart_toStartOf="parent"
+        bind:layout_constraintTop_toBottomOf="@+id/frameLayout" />
 
     <LinearLayout
         android:id="@+id/buttons_layout"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="100dp"
         android:layout_gravity="center_horizontal|top"
-        android:elevation="35dp"
+        android:layout_marginTop="-50dp"
+        android:background="@color/yellow"
         android:gravity="center_horizontal|top"
         android:orientation="horizontal"
+        android:padding="5dp"
         android:visibility="@{ingredient.amount > 0 ? View.VISIBLE : View.GONE}"
-        >
+        android:weightSum="4"
+        bind:layout_constraintEnd_toEndOf="parent"
+        bind:layout_constraintStart_toStartOf="parent"
+        bind:layout_constraintTop_toBottomOf="@+id/frameLayout">
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/mine_button"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_margin="2dp"
+            android:layout_weight="1"
+            android:background="@color/custom_gray"
+            android:onClick="@{() -> ingredient.decrementAmount()}"
+            android:src="@drawable/min_icon"
+
+            />
 
         <FrameLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_gravity="center_horizontal|top">
+            android:layout_gravity="center"
+            android:minWidth="100dp">
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/add_button"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_gravity="bottom|right"
-                android:background="@drawable/add_min_button_back"
-                android:backgroundTint="@color/gray"
-                android:elevation="2dp"
-                android:onClick="@{() -> ingredient.incrementAmount()}"
-                android:text="+"
-                android:textColor="#000000"
-                android:textSize="22sp" />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/mine_button"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_gravity="bottom|left"
-                android:layout_marginRight="60dp"
-                android:background="@drawable/add_min_button_back"
-                android:backgroundTint="@color/gray"
-                android:elevation="2dp"
-                android:text="-"
-                android:onClick="@{() -> ingredient.decrementAmount()}"
-
-                android:textColor="#000000"
-                android:textSize="22sp" />
-
-            <androidx.appcompat.widget.AppCompatButton
+            <TextView
                 android:id="@+id/name_button"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="8dp"
-                android:background="@drawable/add_min_button_back"
-                android:backgroundTint="@color/button_min_rounded_color"
-                android:elevation="4dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:gravity="center"
                 android:text="@{String.valueOf(ingredient.amount)}"
-                android:textAlignment="center"
                 android:textColor="#000000"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                tools:text="10" />
+                android:textSize="44dp"
+                android:textStyle="bold" />
 
         </FrameLayout>
+
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/add_button"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_margin="2dp"
+
+            android:layout_weight="1"
+            android:background="@color/custom_gray"
+            android:onClick="@{() -> ingredient.incrementAmount()}"
+            android:src="@drawable/plus_icon" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal|top"
+            android:background="@color/yellow"
+            android:orientation="horizontal"
+            android:weightSum="4">
+
+
+        </LinearLayout>
 
     </LinearLayout>
 
 
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
