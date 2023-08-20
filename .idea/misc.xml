@@ -4,11 +4,20 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../../layout/custom_preview.xml" value="0.25885416666666666" />
+        <entry key="app/src/main/res/drawable-xxxhdpi/border_bk.xml" value="0.183" />
+        <entry key="app/src/main/res/drawable-xxxhdpi/border_bk_nocolor.xml" value="0.183" />
+        <entry key="app/src/main/res/drawable-xxxhdpi/ed_rounded.xml" value="0.183" />
+        <entry key="app/src/main/res/drawable-xxxhdpi/hf_circle_lf.xml" value="0.183" />
+        <entry key="app/src/main/res/drawable-xxxhdpi/hf_dialog_bg.xml" value="0.183" />
         <entry key="app/src/main/res/drawable/add_min_button_back.xml" value="0.1635" />
         <entry key="app/src/main/res/drawable/blur_background.xml" value="0.3215" />
         <entry key="app/src/main/res/drawable/button_circular.xml" value="0.3475" />
         <entry key="app/src/main/res/drawable/button_rounded.xml" value="0.3475" />
+        <entry key="app/src/main/res/drawable/dash_line.xml" value="0.183" />
         <entry key="app/src/main/res/drawable/dialog_bg.xml" value="0.183" />
+        <entry key="app/src/main/res/drawable/hf_circle.xml" value="0.183" />
+        <entry key="app/src/main/res/drawable/hf_circle_rt.xml" value="0.183" />
+        <entry key="app/src/main/res/drawable/ic_burger.xml" value="0.1315" />
         <entry key="app/src/main/res/drawable/indicator.xml" value="0.1645" />
         <entry key="app/src/main/res/drawable/item_border_bk.xml" value="0.183" />
         <entry key="app/src/main/res/drawable/item_border_bk_unselected.xml" value="0.145" />
@@ -19,25 +28,27 @@
         <entry key="app/src/main/res/drawable/tab_selected_background.xml" value="0.1645" />
         <entry key="app/src/main/res/drawable/tab_unselected_background.xml" value="0.1645" />
         <entry key="app/src/main/res/drawable/top_button_circular.xml" value="0.3475" />
-        <entry key="app/src/main/res/layout/activity_chef.xml" value="0.2775479503572772" />
+        <entry key="app/src/main/res/layout/activity_chef.xml" value="0.2057188244638602" />
         <entry key="app/src/main/res/layout/activity_chef_org.xml" value="0.44781553398058255" />
-        <entry key="app/src/main/res/layout/activity_invoice.xml" value="0.5854545454545454" />
+        <entry key="app/src/main/res/layout/activity_invoice.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2427536231884058" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.22778088317495807" />
         <entry key="app/src/main/res/layout/activity_start.xml" value="0.3434466019417476" />
+        <entry key="app/src/main/res/layout/finish_ordering_dialog.xml" value="0.15464895635673626" />
         <entry key="app/src/main/res/layout/fragment_chef_item.xml" value="0.31023550724637683" />
         <entry key="app/src/main/res/layout/ingredents_fragment.xml" value="0.1" />
         <entry key="app/src/main/res/layout/ingredient_item.xml" value="0.4997362950618521" />
+        <entry key="app/src/main/res/layout/invoice_dialog.xml" value="0.1" />
         <entry key="app/src/main/res/layout/invoice_recycler_item.xml" value="0.6326129666011788" />
-        <entry key="app/src/main/res/layout/language_dialog.xml" value="0.375" />
-        <entry key="app/src/main/res/layout/layout_dialog.xml" value="0.5709219858156028" />
+        <entry key="app/src/main/res/layout/language_dialog.xml" value="0.3378803777544596" />
+        <entry key="app/src/main/res/layout/layout_dialog.xml" value="0.25" />
         <entry key="app/src/main/res/layout/product_item.xml" value="0.1" />
         <entry key="app/src/main/res/layout/tab_icon_layout.xml" value="0.55" />
         <entry key="app/src/main/res/layout/tab_indicator.xml" value="1.0" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

@@ -39,7 +39,7 @@
 
             app:lottie_autoPlay="false"
             android:background="#00000000"
-            app:lottie_fileName="p12.json"
+            app:lottie_fileName="bun.json"
             app:lottie_loop="false"
             app:lottie_speed="1"
 

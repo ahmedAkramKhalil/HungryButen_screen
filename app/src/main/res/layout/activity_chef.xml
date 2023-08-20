@@ -46,8 +46,8 @@
             android:layout_gravity="center"
             android:layout_marginTop="-100dp"
             android:layout_weight="2"
+            android:elevation="1dp"
             android:background="@drawable/positive_button_rounded"
-            android:elevation="12dp"
             android:gravity="center"
             android:onClick="@{() -> vm.sendActionEvent(actionEvent.NEXT_PAGE_EVENT)}"
             android:textColor="@color/button_positive_text_color"
@@ -244,7 +244,7 @@
         <ImageView
             android:id="@+id/imageView2"
             android:layout_width="0dp"
-            android:layout_height="600dp"
+            android:layout_height="700dp"
             android:scaleType="fitXY"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -264,8 +264,8 @@
         <ImageView
             android:id="@+id/hb_logo"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="-150dp"
+            android:layout_height="400dp"
+            android:layout_marginTop="-200dp"
             app:layout_constraintEnd_toEndOf="@+id/imageView2"
             app:layout_constraintStart_toStartOf="@+id/imageView2"
             app:layout_constraintTop_toBottomOf="@+id/imageView2"
@@ -291,7 +291,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/imageView6"
             app:layout_constraintStart_toEndOf="@+id/imageView6"
             app:layout_constraintTop_toTopOf="@+id/imageView6"
-            app:srcCompat="@drawable/burger_bk_write" />
+            app:srcCompat="@drawable/ic_best_burger" />
 
         <ImageView
             android:id="@+id/imageView9"
@@ -299,12 +299,12 @@
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toTopOf="@+id/imageView4"
             app:layout_constraintStart_toStartOf="parent"
-            app:srcCompat="@drawable/burger_bk_img" />
+            android:src="@drawable/burger_bk_img" />
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/cancel_button"
-            android:layout_width="285dp"
-            android:layout_height="135dp"
+            android:layout_width="400dp"
+            android:layout_height="@dimen/button_height"
             android:layout_gravity="center"
             android:layout_marginStart="200dp"
             android:layout_marginTop="200dp"
@@ -312,7 +312,7 @@
             android:elevation="10dp"
             android:gravity="center"
             android:onClick="@{() -> vm.sendActionEvent(actionEvent.SHOW_CANCEL_DIALOG_EVENT)}"
-            android:src="@drawable/reset_button"
+            android:src="@drawable/ic_button_reset"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
 
@@ -320,27 +320,41 @@
 
         <ImageView
             android:id="@+id/jo_logo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
             android:layout_marginTop="200dp"
             android:layout_marginEnd="200dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:transitionName="jo"
-            app:srcCompat="@drawable/jo_logo" />
+            android:src="@drawable/ic_jo" />
 
         <TextView
             android:id="@+id/custom_burger_tv"
-            android:transitionName="text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="200dp"
+            android:fontFamily="@font/kabrio"
             android:text="@string/custom_your_burger"
             android:textColor="@android:color/black"
-            android:textSize="120dp"
+            android:textSize="130dp"
+            android:transitionName="text"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView2"
             app:layout_constraintEnd_toStartOf="@+id/jo_logo"
             app:layout_constraintStart_toEndOf="@+id/cancel_button"
             app:layout_constraintTop_toTopOf="@+id/imageView2" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:text="@string/reset"
+            android:textColor="@android:color/black"
+            android:textSize="48dp"
+            app:layout_constraintBottom_toBottomOf="@+id/cancel_button"
+            app:layout_constraintEnd_toEndOf="@+id/cancel_button"
+            app:layout_constraintStart_toStartOf="@+id/cancel_button"
+            app:layout_constraintTop_toTopOf="@+id/cancel_button" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

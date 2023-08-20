@@ -13,6 +13,7 @@ import androidx.databinding.DataBindingUtil;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.wiz.myapplication.ActionEvent;
 import com.wiz.myapplication.R;
+import com.wiz.myapplication.databinding.FinishOrderingDialogBinding;
 import com.wiz.myapplication.databinding.LayoutDialogBinding;
 import com.wiz.myapplication.viewmodel.ChefViewModel;
 
@@ -28,16 +29,17 @@ public class DialogBuilder {
     }
 
 
-    public void showFinishDialog() {
-        LayoutDialogBinding dialogBinding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.layout_dialog, null, false);
+    public String showFinishDialog(float totalPrice) {
+        FinishOrderingDialogBinding dialogBinding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.finish_ordering_dialog, null, false);
         dialogBinding.title.setText(context.getResources().getString(R.string.finish_dialog_title));
         dialogBinding.body.setText(context.getResources().getString(R.string.finish_dialog_message));
-        dialogBinding.animationView.setAnimation("info_nutral.json");
+//        dialogBinding.animationView.setAnimation("info_nutral.json");
         MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(context, R.style.ThemeOverlay_App_MaterialAlertDialog)
                 .setView(dialogBinding.getRoot());
         builder.setBackground(new ColorDrawable(Color.TRANSPARENT));
         dialogBinding.positive.setText(context.getResources().getString(R.string.yes));
-        dialogBinding.positive.setBackgroundTintList(ColorStateList.valueOf(context.getResources().getColor(R.color.red_text_color)));
+        dialogBinding.totalPrice.setText(String.valueOf(totalPrice));
+//        dialogBinding.positive.setBackgroundTintList(ColorStateList.valueOf(context.getResources().getColor(R.color.red_text_color)));
         dialogBinding.negative.setText(context.getResources().getString(R.string.dissmiss));
         AlertDialog alertDialog = builder.create();
         dialogBinding.positive.setOnClickListener(new View.OnClickListener() {
@@ -58,6 +60,9 @@ public class DialogBuilder {
             }
         });
         alertDialog.show();
+        if (dialogBinding.editTextTextProductName.getText().toString() == null)
+            return " ";
+        return dialogBinding.editTextTextProductName.getText().toString();
 
     }
 

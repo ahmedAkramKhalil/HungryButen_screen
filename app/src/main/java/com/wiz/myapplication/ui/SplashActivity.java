@@ -31,16 +31,16 @@ public class SplashActivity extends AppCompatActivity {
         binding.startButtonAnimation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(SplashActivity.this, ChefActivity.class);
-                Pair<View, String> p1 = Pair.create(binding.joLogo, "jo");
-                Pair<View, String> p2 = Pair.create(binding.hbLogo, "hb");
-                Pair<View, String> p3 = Pair.create(binding.customBurgerTv, "text");
-                intent.putExtra("language","ar");
-
-                ActivityOptionsCompat options = ActivityOptionsCompat.
-                        makeSceneTransitionAnimation(SplashActivity.this, p1, p2, p3);
-                startActivity(intent,options.toBundle());
-//                showLanguageChooserDialog();
+//                Intent intent = new Intent(SplashActivity.this, ChefActivity.class);
+//                Pair<View, String> p1 = Pair.create(binding.joLogo, "jo");
+//                Pair<View, String> p2 = Pair.create(binding.hbLogo, "hb");
+//                Pair<View, String> p3 = Pair.create(binding.customBurgerTv, "text");
+//                intent.putExtra("language","ar");
+//
+//                ActivityOptionsCompat options = ActivityOptionsCompat.
+//                        makeSceneTransitionAnimation(SplashActivity.this, p1, p2, p3);
+//                startActivity(intent,options.toBundle());
+                showLanguageChooserDialog();
             }
         });
 

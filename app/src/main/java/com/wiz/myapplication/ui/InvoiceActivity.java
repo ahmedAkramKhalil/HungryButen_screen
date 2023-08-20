@@ -29,6 +29,7 @@ public class InvoiceActivity extends AppCompatActivity {
     RecyclerView recyclerView ;
     float totalPrice  ;
     TextView priceTv;
+    String name;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,10 +37,13 @@ public class InvoiceActivity extends AppCompatActivity {
         ActivityInvoiceBinding binding = DataBindingUtil.setContentView(this,R.layout.activity_invoice);
         ingredientList = getIntent().getParcelableArrayListExtra("ingredients");
         totalPrice = getIntent().getFloatExtra("price",0.0f);
+        name = getIntent().getStringExtra("name");
         recyclerView = binding.recyclerView ;
         priceTv = binding.totalPrice;
+
         animateTextView();
         initRecycler();
+        binding.componentName.setText(name + "`s Custom Burger ");
 
     }
 

@@ -1,6 +1,7 @@
 package com.wiz.myapplication.ui;
 
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.motion.widget.MotionLayout;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -28,6 +29,7 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.Rect;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -38,10 +40,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
+import android.view.animation.LayoutAnimationController;
 import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.google.android.flexbox.AlignContent;
 import com.google.android.flexbox.AlignItems;
@@ -58,6 +64,9 @@ import com.robinhood.ticker.TickerUtils;
 import com.wiz.myapplication.ActionEvent;
 import com.wiz.myapplication.ItemDecorator;
 import com.wiz.myapplication.ZoomOutPageTransformer;
+import com.wiz.myapplication.databinding.FinishOrderingDialogBinding;
+import com.wiz.myapplication.databinding.InvoiceDialogBinding;
+import com.wiz.myapplication.ui.adapter.InvoiceRecyclerAdapter;
 import com.wiz.myapplication.ui.adapter.ProductRecyclerAdapter;
 import com.wiz.myapplication.model.Ingredient;
 import com.wiz.myapplication.model.Product;
@@ -162,7 +171,7 @@ public class ChefActivity extends AppCompatActivity {
                         new DialogBuilder(ChefActivity.this, viewModel).showCancelDialog();
                         break;
                     case SHOW_FINISH_DIALOG_EVENT:
-                        new DialogBuilder(ChefActivity.this, viewModel).showFinishDialog();
+                        product.setName(new DialogBuilder(ChefActivity.this, viewModel).showFinishDialog(product.getTotalPrice()));
                         break;
                     case NEXT_PAGE_EVENT:
                         onClickToNext();
@@ -171,7 +180,8 @@ public class ChefActivity extends AppCompatActivity {
                         onClickToBack();
                         break;
                     case FINISH_ORDERING:
-                        showFinishOrderingTransition();
+                        showInvoiceDialog("Ahmed",product.getTotalPrice(),productIngredients);
+//                        showFinishOrderingTransition();
                         break;
 
                 }
@@ -195,7 +205,9 @@ public class ChefActivity extends AppCompatActivity {
 
 
     void showFinishOrderingTransition() {
-       // #TODO: transition
+        startInvoiceActivity();
+
+        // #TODO: transition
 //        binding.container.transitionToEnd();
 //        binding.container.addTransitionListener(new MotionLayout.TransitionListener() {
 //            @Override
@@ -234,6 +246,7 @@ public class ChefActivity extends AppCompatActivity {
         Intent in = new Intent(ChefActivity.this, InvoiceActivity.class);
         in.putParcelableArrayListExtra("ingredients", (ArrayList<? extends Parcelable>) productIngredients);
         in.putExtra("price", product.getTotalPrice());
+        in.putExtra("name",product.getName());
         startActivity(in);
         finish();
     }
@@ -288,8 +301,7 @@ public class ChefActivity extends AppCompatActivity {
             viewPager.setCurrentItem(viewPager.getCurrentItem() + 1);
             binding.nextButton.setClickable(true);
         } else {
-
-            new DialogBuilder(this, viewModel).showFinishDialog();
+            product.setName(new DialogBuilder(ChefActivity.this, viewModel).showFinishDialog(product.getTotalPrice()));
         }
     }
 
@@ -309,7 +321,7 @@ public class ChefActivity extends AppCompatActivity {
 
 //        productRecycler.setLayoutManager(flexboxLayoutManager);
         productRecycler.setLayoutManager(new LinearLayoutManager(this));
-        productRecycler.addItemDecoration(new ItemDecorator(-100));
+        productRecycler.addItemDecoration(new ItemDecorator(-2950));
 
 
     }
@@ -341,6 +353,51 @@ public class ChefActivity extends AppCompatActivity {
                 in.removeOnPropertyChangedCallback(callback);
             });
         });
+    }
+
+    public void showInvoiceDialog(String name , float totalPrice , List<Ingredient> ingredientList) {
+
+        InvoiceDialogBinding dialogBinding = DataBindingUtil.inflate(LayoutInflater.from(this), R.layout.invoice_dialog, null, false);
+         RecyclerView recyclerView = dialogBinding.recyclerView ;
+         TextView priceTv = dialogBinding.totalPrice;
+        animateTextView(totalPrice,priceTv);
+        dialogBinding.componentName.setText(name + "`s Custom Burger ");
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        final LayoutAnimationController controller =
+                AnimationUtils.loadLayoutAnimation(this, R.anim.layout_animation_up_to_down);
+        InvoiceRecyclerAdapter adapter = new InvoiceRecyclerAdapter(this,ingredientList);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutAnimation(controller);
+        adapter.notifyDataSetChanged();
+        recyclerView.scheduleLayoutAnimation();
+
+        MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(this, R.style.ThemeOverlay_App_MaterialAlertDialog)
+                .setView(dialogBinding.getRoot());
+        builder.setBackground(new ColorDrawable(Color.TRANSPARENT));
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+
+    }
+
+
+    public void animateTextView( float totalPrice , TextView textView) {
+        float initialValue = 0;
+        float finalValue = totalPrice ;
+        DecelerateInterpolator decelerateInterpolator = new DecelerateInterpolator(0.9f);
+        float start = Math.min(initialValue, finalValue);
+        float end = Math.max(initialValue, finalValue);
+        float difference = Math.abs(finalValue - initialValue);
+        Handler handler = new Handler();
+        for (float count = start; count <= end; count++) {
+            float time = Math.round(decelerateInterpolator.getInterpolation((((float) count) / difference)) * (900/finalValue)) * count;
+            final float finalCount = ((initialValue > finalValue) ? initialValue - count : count);
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    textView.setText(String.valueOf(finalCount));
+                }
+            }, (long) time);
+        }
     }
 
 }
